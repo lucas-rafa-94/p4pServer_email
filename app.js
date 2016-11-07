@@ -1,5 +1,3 @@
-//var https = require("https");
-//var http = require("http")
 var express = require("express");
 var bodyParser = require("body-parser");
 var request = require("request");
@@ -13,13 +11,23 @@ var nodemailer = require('nodemailer');
 
 app.post("/cadastro/email", jsonParser, function(req, res) {
 
-    var nano = require('nano')('https://9c6cebc2-c237-4588-9c99-6bd8db2231af-bluemix.cloudant.com/')
 
-    var transporter = nodemailer.createTransport('');
+    var nano = require('nano')('https://9c6cebc2-c237-4588-9c99-6bd8db2231af-bluemix.cloudant.com/')
+    var smtpTransport2 = nodemailer.createTransport("SMTP", {
+        host: "smtp.gmail.com",
+        port: "465",
+        secure: "yes",
+        service: "gmail",
+        user: "luganorrrr@gmail.com",
+        pass: "lucasr10"
+    });
+
+    console.log(req.body);
+    console.log(req.body.email);
 
     var mailOptions = {
-        from: '" " <feedback@people4people.com>',
-        to: req.email,
+        from: 'luganorrrr@gmail.com',
+        to: req.body.email,
         subject: 'Teste p4p',
         text: 'Teste p4p',
         html: '<b>Teste p4p</b>'
@@ -31,9 +39,9 @@ app.post("/cadastro/email", jsonParser, function(req, res) {
         if (err) {
             throw err
         };
-        resMed.send(result);
-
-        transporter.sendMail(mailOptions, function(error, info) {
+        res.send(result);
+        console.log("--------------");
+        smtpTransport2.sendMail(mailOptions, function(error, info) {
             if (error) {
                 return console.log(error);
             }
