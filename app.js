@@ -14,10 +14,10 @@ app.post("/cadastro/email", jsonParser, function(req, res) {
 
     var nano = require('nano')('https://9c6cebc2-c237-4588-9c99-6bd8db2231af-bluemix.cloudant.com/')
     var smtpTransport2 = nodemailer.createTransport("SMTP", {
-        host: "smtp.gmail.com",
-        port: "465",
-        secure: "yes",
-        service: "gmail",
+        //host: "smtp.gmail.com",
+        //port: "465",
+        //secure: "yes",
+        //service: "gmail",
         user: "luganorrrr@gmail.com",
         pass: "lucasr10"
     });
