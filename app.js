@@ -17,15 +17,15 @@ app.post("/cadastro/email", jsonParser, function(req, res) {
         //port: "465",
         //secure: "yes",
         //service: "gmail",
-        user: "luganorrrr@gmail.com",
-        pass: "lucasr10"
+        user: "",
+        pass: ""
     });
 
     console.log(req.body);
     console.log(req.body.email);
 
     var mailOptions = {
-        from: 'luganorrrr@gmail.com',
+        from: '', //email sender
         to: req.body.email,
         subject: 'Teste p4p',
         text: 'Teste p4p',
